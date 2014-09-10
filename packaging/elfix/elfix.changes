@@ -1,0 +1,26 @@
+-------------------------------------------------------------------
+Thu Jul 17 18:50:33 CEST 2014 - dsterba@suse.cz
+
+- update to git be6c34290f1c
+  * Switch from error() to errx() in fix-gnustack.c and paxctl-ng.c to
+    make the code portable to musl (and BSD).
+  * Remove check from install-xattr which is messing up portage's install
+    wrapper.  See https://bugs.gentoo.org/511984
+  * Added ldd.py, a clone of ldd built on top of pyelftools
+
+-------------------------------------------------------------------
+Sat Mar  1 23:44:18 CET 2014 - dsterba@suse.cz
+
+- add explicit provides: paxctl-ng
+
+-------------------------------------------------------------------
+Fri Feb 28 01:32:40 CET 2014 - dsterba@suse.cz
+
+- update to git c520a73a7025
+- add script for git export
+
+-------------------------------------------------------------------
+Sun Feb  9 00:46:24 UTC 2014 - dsterba@suse.com
+
+- Initial import 0.8
+

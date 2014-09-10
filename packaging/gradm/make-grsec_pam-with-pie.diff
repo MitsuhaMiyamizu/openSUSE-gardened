@@ -1,0 +1,11 @@
+--- Makefile.orig	2013-06-07 14:41:23.908980674 +0200
++++ Makefile	2013-06-07 14:46:52.302036698 +0200
+@@ -57,7 +57,7 @@
+ 	@if [ ! -f /usr/include/security/pam_appl.h ] ; then \
+ 		echo "Unable to detect PAM headers, disabling PAM support." ; \
+ 	else \
+-		$(CC) $(CFLAGS) -o $@ gradm_pam.c -lpam -lpam_misc $(LDFLAGS) ; \
++		$(CC) $(CFLAGS) -fPIE -o $@ gradm_pam.c -pie -lpam -lpam_misc $(LDFLAGS) ; \
+ 	fi
+ 
+ grlearn: grlearn.c gradm_lib.c gradm_globals.c grlearn2_config.tab.c lex.grlearn_config.c

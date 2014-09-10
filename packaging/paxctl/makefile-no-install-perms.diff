@@ -1,0 +1,13 @@
+--- Makefile.orig	2014-02-02 01:48:12.438740954 +0100
++++ Makefile	2014-02-02 01:53:39.217827750 +0100
+@@ -19,8 +19,8 @@
+ 
+ install: $(PROG)
+ #	$(MKDIR) $(DESTDIR)/sbin $(DESTDIR)$(MANDIR)
+-	$(INSTALL) -D --owner 0 --group 0 --mode a=rx $(PROG) $(DESTDIR)/sbin/$(PROG)
+-	$(INSTALL) -D --owner 0 --group 0 --mode a=r $(PROG).1 $(DESTDIR)/$(MANDIR)/$(PROG).1
++	$(INSTALL) -D --mode a=rx $(PROG) $(DESTDIR)/usr/sbin/$(PROG)
++	$(INSTALL) -D --mode a=r $(PROG).1 $(DESTDIR)/$(MANDIR)/$(PROG).1
+ 
+ clean:
+ 	$(RM) -f $(PROG) $(PROG).o core

@@ -1,0 +1,75 @@
+Index: gcc48.changes
+===================================================================
+--- gcc48.changes (revision 1)
++++ gcc48.changes (revision 2)
+@@ -1,4 +1,9 @@
+ -------------------------------------------------------------------
++Tue Jan 28 02:05:26 CET 2014 - dsterba@suse.cz
++
++- enable gcc plugins, package gcc-plugin-devel
++
++-------------------------------------------------------------------
+ Wed Oct  2 10:01:56 UTC 2013 - idonmez@suse.com
+ 
+ - Transactional memory on s390{x} is now supported with gcc 4.8,
+Index: gcc48.spec
+===================================================================
+--- gcc48.spec (revision 1)
++++ gcc48.spec (revision 2)
+@@ -1,7 +1,7 @@
+ #
+ # spec file for package gcc48
+ #
+-# Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
++# Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
+ #
+ # All modifications and additions to the file contributed by third parties
+ # remain the property of their copyright owners, unless otherwise agreed
+@@ -338,6 +338,14 @@
+ %description -n gcc48-64bit
+ This package contains 64bit support for the GNU Compiler Collection.
+ 
++%package -n gcc-plugin-devel
++Summary:        GCC plugin development headers
++License:        GPL-3.0+
++Group:          Development/Languages/C and C++
++Requires:       gcc48 = %{version}-%{release}
++
++%description -n gcc-plugin-devel
++This package contains header files for gcc plugin development.
+ 
+ %package locale
+ Summary:        Locale Data for the GNU Compiler Collection
+@@ -1649,7 +1657,7 @@
+ 	--with-gxx-include-dir=%{_prefix}/include/c++/%{gcc_dir_version} \
+ 	--enable-ssp \
+ 	--disable-libssp \
+-	--disable-plugin \
++	--enable-plugin \
+ 	--with-bugurl="http://bugs.opensuse.org/" \
+ 	--with-pkgversion="SUSE Linux" \
+ %if !%{build_libjava}
+@@ -2092,8 +2100,8 @@
+ rm -f $RPM_BUILD_ROOT%{libsubdir}/include-fixed/tgmath.h
+ rm -rf $RPM_BUILD_ROOT%{libsubdir}/include-fixed/bits
+ rm -rf $RPM_BUILD_ROOT%{libsubdir}/include-fixed/sys
+-# no plugins
+-rm -rf $RPM_BUILD_ROOT%{libsubdir}/plugin
++# plugins!
++#rm -rf $RPM_BUILD_ROOT%{libsubdir}/plugin
+ rm -f  $RPM_BUILD_ROOT%{_infodir}/dir
+ rm -f  $RPM_BUILD_ROOT%{_prefix}/bin/gccbug%{binsuffix}
+ 
+@@ -2931,4 +2939,12 @@
+ %doc testresults/*.log
+ %endif
+ 
++%files -n gcc-plugin-devel
++%defattr(-,root,root)
++%dir %{libsubdir}/plugin
++%dir %{libsubdir}/plugin/include
++%{libsubdir}/plugin/include/*
++%{libsubdir}/plugin/gengtype
++%{libsubdir}/plugin/gtype.state
++
+ %changelog

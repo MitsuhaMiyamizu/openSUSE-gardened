@@ -1,0 +1,12 @@
+/var/log/YaST2/pax-plugin.log {
+    compress
+    dateext
+    notifempty
+    missingok
+    nocreate
+
+    maxage 365
+    rotate 99
+    size 10M
+}
+

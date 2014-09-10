@@ -1,0 +1,12 @@
+-------------------------------------------------------------------
+Tue May 13 13:12:30 CEST 2014 - dsterba@suse.cz
+
+- paxctl 0.8
+  - fixed handling of ELF files whose ELF/PT headers aren't covered by a
+    PT_LOAD segment, e.g., memcheck-amd64-linux from valgrind, thanks to
+    Mathias Krause <minipli@googlemail.com>
+
+-------------------------------------------------------------------
+Sun Feb  2 00:32:14 UTC 2014 - dsterba@suse.com
+
+- Initial import (0.7)

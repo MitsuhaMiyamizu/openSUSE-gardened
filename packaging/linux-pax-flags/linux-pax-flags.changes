@@ -1,0 +1,44 @@
+-------------------------------------------------------------------
+Thu Jul 17 19:09:30 CEST 2014 - dsterba@suse.cz
+
+- update from git
+  - bump to 2.0.16
+  - browsers.conf: add tor browser paths
+
+-------------------------------------------------------------------
+Tue Mar 25 01:23:58 CET 2014 - dsterba@suse.cz
+
+- update from git
+  - update flags only if not matching by default
+  - add --force and --verbose options
+  - update docs
+
+-------------------------------------------------------------------
+Tue Mar 18 01:29:41 CET 2014 - dsterba@suse.cz
+
+- update from git, bump to 2.0.15-3
+  - merge changes with other git repos
+  - image magick rules, ruby, browsers
+
+-------------------------------------------------------------------
+Wed Mar  5 00:08:29 CET 2014 - dsterba@suse.cz
+
+- use paxctl-ng
+
+-------------------------------------------------------------------
+Tue Mar  4 13:45:59 CET 2014 - dsterba@suse.cz
+
+- add lib64 paths
+
+-------------------------------------------------------------------
+Fri Feb 28 18:41:52 CET 2014 - dsterba@suse.cz
+
+- update from git:
+  - clean up and extend configs
+  - update browser path patterns
+
+-------------------------------------------------------------------
+Fri Feb 28 02:16:39 CET 2014 - dsterba@suse.cz
+
+- initial import 2.0.14
+

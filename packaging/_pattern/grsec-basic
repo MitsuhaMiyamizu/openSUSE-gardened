@@ -1,0 +1,22 @@
+<pattern
+ xmlns="http://novell.com/package/metadata/suse/pattern"
+ xmlns:rpm="http://linux.duke.edu/metadata/rpm"
+>
+    <name>pattern-grsec-basic</name>
+    <summary lang="en">Grsecurity enhanced openSUSE, basic packages</summary>
+    <description lang="en">Provide grsecurity enhanced kernel and utilities to manage the permissions.
+
+Install this to pull all packages for basic use on desktop.
+</description>
+     <uservisible/>
+     <category lang="en">System</category>
+     <rpm:requires>
+      <rpm:entry name="kernel-grsec-desktop"/>
+      <rpm:entry name="gradm"/>
+      <rpm:entry name="elfix"/>
+      <rpm:entry name="linux-pax-flags"/>
+      <rpm:entry name="paxtest"/>
+      <rpm:entry name="zypp-plugin-pax-flags"/>
+    </rpm:requires>
+</pattern>
+
