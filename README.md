@@ -2,6 +2,7 @@ See [wiki](https://github.com/kdave/opensuse-gardened/wiki/openSUSE-gardened) fo
 
 Related repositories:
 
+* https://github.com/kdave/kernel-source - openSUSE kernel repository, grsec branches
 * https://github.com/kdave/zypp-plugin-pax-flags - packager plugin to refresh PaX flags
 * https://github.com/kdave/linux-pax-flags - PaX settings
 
