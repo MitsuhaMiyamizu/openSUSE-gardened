@@ -1,0 +1,142 @@
+#!/usr/bin/perl
+# convert checksec.sh output to simple html table
+# contents of header.html is inlined into the output
+
+use strict;
+use warnings;
+use File::Which qw(which);
+use Cwd qw(realpath);
+
+my $header=1;
+my $sudo='sudo ';
+
+my %done=();
+
+my @hdr=("RELRO", "STACK CANARY", "NX", "PIE", "RPATH", "RUNPATH", "FILE");
+
+if ($ARGV[0] eq '--noheader') {
+	$header = 0;
+}
+
+sub print_results($$$$$$$) {
+	my ($relro, $canary, $nx, $pie, $norpath, $norunpath, $f)=@_;
+
+	my @class=();
+	push @class, 'norelro' if ($relro == 0);
+	push @class, 'prelro' if ($relro == 1);
+	push @class, 'frelro' if ($relro == 2);
+	push @class, 'nocanary' if (!$canary);
+	push @class, 'canary' if ($canary);
+	push @class, 'nonx' if (!$nx);
+	push @class, 'nx' if ($nx);
+	push @class, 'nopie' if (!$pie);
+	push @class, 'pie' if ($pie);
+	push @class, 'rpath' if (!$norpath);
+	push @class, 'norpath' if ($norpath);
+	push @class, 'runpath' if (!$norunpath);
+	push @class, 'norunpath' if ($norunpath);
+
+	my $class='';
+	if (@class) {
+		$class='class= "'. join(' ', @class) . '"';
+	}
+	print "<tr $class><td>";
+	print '<font color="';
+	print 'red">No ' if (!$relro);
+	print 'brown">Partial ' if ($relro == 1);
+	print 'green">Full ' if ($relro == 2);
+	print 'RELRO';
+	print '</font>';
+	print '</td><td>';
+
+	print '<font color="';
+	print 'red">No canary found' if (!$canary);
+	print 'green">Canary found ' if ($canary);
+	print '</font>';
+	print '</td><td>';
+
+	print '<font color="';
+	print 'red">NX disabled' if (!$nx);
+	print 'green">NX enabled' if ($nx);
+	print '</font>';
+	print '</td><td>';
+
+	print '<font color="';
+	print 'red">No PIE' if (!$pie);
+	print 'green">PIE enabled' if ($pie);
+	print '</font>';
+	print '</td><td>';
+
+	print '<font color="';
+	print 'red">RPATH' if (!$norpath);
+	print 'green">No RPATH' if ($norpath);
+	print '</font>';
+	print '</td><td>';
+
+	print '<font color="';
+	print 'red">RUNPATH' if (!$norunpath);
+	print 'green">No RUNPATH' if ($norunpath);
+	print '</font>';
+	print '</td><td>';
+
+	print $f;
+	print '</td></tr>';
+	print "\n";
+}
+
+# main()
+if ($header) {
+	print "<html>";
+	print "<head>";
+	print "</head>";
+	print "<body>";
+	print `cat header.html` if (-f 'header.html');
+	print "<table border=1 cellpadding=1 cellspacing=0><thead>";
+	for (@hdr) {
+		print "<th>$_</th>\n";
+	}
+	print '</thead></tbody>';
+}
+
+my $cnt=1;
+my $all=scalar(@ARGV);
+
+for my $f (@ARGV) {
+	print STDERR "Arg: $f\n" if 0;
+	$f=which($f) unless ($f =~ /\//);
+	print STDERR "Which: $f\n" if 0;
+	$f=realpath($f);
+	print STDERR "Target ($cnt/$all): $f\n" if 1;
+	$cnt++;
+	next if exists $done{$f};
+	$done{$f}=undef;
+	open(F,"$sudo checksec.sh --file \"$f\"|") or die $!;
+
+	my $relro=0;
+	my $canary=0;
+	my $nx=0;
+	my $pie=0;
+	my $norpath=0;
+	my $norunpath=0;
+	my $ok=0;
+	while (<F>) {
+		chomp;
+		if (/^RELRO/) {
+			$ok=1;
+			next;
+		}
+		last if (!$ok);
+		$relro = 1 if /Partial RELRO/;
+		$relro = 2 if /Full RELRO/;
+		$canary = 1 if /Canary found/;
+		$nx = 1 if /NX enabled/;
+		$pie = 1 if /PIE enabled/;
+		$norpath = 1 if /No RPATH/;
+		$norunpath = 1 if /No RUNPATH/;
+
+		print_results($relro, $canary, $nx, $pie, $norpath, $norunpath, $f);
+	}
+	close (F);
+}
+
+print '</tbody></table>' if ($header);
