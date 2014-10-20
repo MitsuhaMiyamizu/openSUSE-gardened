@@ -1,4 +1,19 @@
 -------------------------------------------------------------------
+Tue Oct 14 00:00:00 CEST 2014 - ds@suse.cz
+
+- update to git 5fe63d5f5fd4
+  - bump to 0.9
+  - doc updates, drop local patch
+  - spec: update license
+
+-------------------------------------------------------------------
+Fri Sep 12 00:54:24 CEST 2014 - dsterba@suse.cz
+
+- update to git 8ecc1b4d926d
+- fixup pod docs, breaks build
+- drop fix-gnustack
+
+-------------------------------------------------------------------
 Thu Jul 17 18:50:33 CEST 2014 - dsterba@suse.cz
 
 - update to git be6c34290f1c

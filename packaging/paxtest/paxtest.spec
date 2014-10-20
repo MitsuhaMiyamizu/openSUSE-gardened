@@ -21,7 +21,7 @@ Release:	0
 License:	GPLv2
 Summary:	Test suite for the PaX kernel patch
 Url:		http://pax.grsecurity.net
-Group:		System/Aministration
+Group:		System/Administration
 Source:		%{name}-%{version}.tar.bz2
 # from http://www.trapkit.de/tools/checksec.html
 Source2:        checksec.sh

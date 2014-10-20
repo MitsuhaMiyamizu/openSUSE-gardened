@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Fri Oct 3 00:41:43 CEST 2014 - dsterba@suse.cz
+
+- checksec.sh: understand some grsec plugins
+
+-------------------------------------------------------------------
 Sun Mar 9 01:18:59 CET 2014 - dsterba@suse.cz
 
 - include checksec.sh

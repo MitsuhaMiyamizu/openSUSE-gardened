@@ -365,14 +365,22 @@ kernelcheck() {
   if $kconfig | grep -qi 'CONFIG_DEBUG_STRICT_USER_COPY_CHECKS=y'; then
     printf "\033[32mEnabled\033[m\n"
   else
-    printf "\033[31mDisabled\033[m\n"
+    if $kconfig | grep -qi 'CONFIG_PAX_SIZE_OVERFLOW=y'; then
+      printf "\033[32mEnabled, SIZE_OVERFLOW plugin \033[m\n"
+    else
+      printf "\033[31mDisabled\033[m\n"
+    fi
   fi
 
   printf "  Enforce read-only kernel data:          "
   if $kconfig | grep -qi 'CONFIG_DEBUG_RODATA=y'; then
     printf "\033[32mEnabled\033[m\n"
   else
-    printf "\033[31mDisabled\033[m\n"
+    if $kconfig | grep -qi 'CONFIG_PAX_CONSTIFY_PLUGIN=y'; then
+      printf "\033[32mEnabled, CONSTIFY plugin \033[m\n"
+    else
+      printf "\033[31mDisabled\033[m\n"
+    fi
   fi
   printf "  Restrict /dev/mem access:               "
   if $kconfig | grep -qi 'CONFIG_STRICT_DEVMEM=y'; then

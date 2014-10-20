@@ -1,4 +1,24 @@
 -------------------------------------------------------------------
+Tue Oct 14 00:00:00 CEST 2014 - dsterba@suse.cz
+
+- update from git:
+  - simple.conf: /usr/bin/trust
+
+-------------------------------------------------------------------
+Fri Oct 3 00:08:04 CEST 2014 - dsterba@suse.cz
+
+- update from git:
+  - linux-pax-flags ruby 1.9 compat fix
+  - qemu.conf: add more targets
+  - valgrind.conf: add more binaries
+
+-------------------------------------------------------------------
+Thu Sep 11 10:51:28 CEST 2014 - dsterba@suse.cz
+
+- update from git:
+  - browsers.conf: add add RANDMMAP for firefox
+
+-------------------------------------------------------------------
 Thu Jul 17 19:09:30 CEST 2014 - dsterba@suse.cz
 
 - update from git

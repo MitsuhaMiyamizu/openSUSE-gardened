@@ -11,12 +11,12 @@ Install this to pull all packages for basic use on desktop.
      <uservisible/>
      <category lang="en">System</category>
      <rpm:requires>
-      <rpm:entry name="kernel-grsec-desktop"/>
-      <rpm:entry name="gradm"/>
       <rpm:entry name="elfix"/>
       <rpm:entry name="linux-pax-flags"/>
-      <rpm:entry name="paxtest"/>
       <rpm:entry name="zypp-plugin-pax-flags"/>
+      <rpm:entry name="paxtest"/>
+      <rpm:entry name="gradm"/>
+      <rpm:entry name="kernel-grsec-desktop"/>
     </rpm:requires>
 </pattern>
 

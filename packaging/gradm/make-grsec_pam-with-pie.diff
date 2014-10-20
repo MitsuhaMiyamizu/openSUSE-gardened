@@ -5,7 +5,7 @@
  		echo "Unable to detect PAM headers, disabling PAM support." ; \
  	else \
 -		$(CC) $(CFLAGS) -o $@ gradm_pam.c -lpam -lpam_misc $(LDFLAGS) ; \
-+		$(CC) $(CFLAGS) -fPIE -o $@ gradm_pam.c -pie -lpam -lpam_misc $(LDFLAGS) ; \
++		$(CC) $(CFLAGS) -fstack-protector-all -Wl,-z,now -fPIE -o $@ gradm_pam.c -pie -lpam -lpam_misc $(LDFLAGS) ; \
  	fi
  
  grlearn: grlearn.c gradm_lib.c gradm_globals.c grlearn2_config.tab.c lex.grlearn_config.c

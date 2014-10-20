@@ -16,10 +16,10 @@
 #
 
 Name:           elfix
-Version:	0.8
+Version:	0.9
 Release:	0
-%define         git_version be6c34290f1c
-License:	GPLv2
+%define         git_version 5fe63d5f5fd4
+License:	GPL-2.0
 Summary:	Utilities to modify Elf binaries to work with PaX hardened kernel
 Url:		http://www.gentoo.org
 #GitUrl:	git://git.overlays.gentoo.org/proj/elfix.git
@@ -46,12 +46,10 @@ make %{?_smp_mflags}
 %files
 %defattr(-,root,root)
 %doc ChangeLog README COPYING
-%{_sbindir}/fix-gnustack
 %{_sbindir}/migrate-pax
 %{_sbindir}/paxctl-ng
 %{_sbindir}/paxmark.sh
 %{_sbindir}/pypaxctl
 %{_sbindir}/revdep-pax
-%{_mandir}/man1/fix-gnustack.1*
 %{_mandir}/man1/paxctl-ng.1*
 %{_mandir}/man1/revdep-pax.1*

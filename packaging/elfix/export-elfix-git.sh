@@ -15,7 +15,7 @@ pwd=`pwd`
 cd "$dir"
 
 # ...
-PKG_VERSION=0.8
+PKG_VERSION=0.9
 gitsha=$(git log --format='%h' -n 1)
 
 out=elfix-${PKG_VERSION}_g${gitsha}.tar.bz2

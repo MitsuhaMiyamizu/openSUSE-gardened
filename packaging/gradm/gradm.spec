@@ -16,7 +16,7 @@
 #
 
 
-%define upstream_release	201407222118
+%define upstream_release	201408301734
 Name:           gradm
 Version:        3.0
 Release:        0
