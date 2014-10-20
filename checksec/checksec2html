@@ -36,6 +36,10 @@ sub print_results($$$$$$$) {
 	push @class, 'runpath' if (!$norunpath);
 	push @class, 'norunpath' if ($norunpath);
 
+	my $mode=(stat($f))[2];
+	my $suid=$mode & 04000;
+	my $sgid=$mode & 02000;
+
 	my $class='';
 	if (@class) {
 		$class='class= "'. join(' ', @class) . '"';
@@ -79,6 +83,8 @@ sub print_results($$$$$$$) {
 	print '</font>';
 	print '</td><td>';
 
+	print '<font color="red">S</font>' if ($suid);
+	print '<font color="red">G</font>' if ($sgid);
 	print $f;
 	print '</td></tr>';
 	print "\n";
@@ -104,10 +110,11 @@ my $all=scalar(@ARGV);
 for my $f (@ARGV) {
 	print STDERR "Arg: $f\n" if 0;
 	$f=which($f) unless ($f =~ /\//);
+	$cnt++;
+	next if ((!defined $f) || ($f eq ''));
 	print STDERR "Which: $f\n" if 0;
 	$f=realpath($f);
 	print STDERR "Target ($cnt/$all): $f\n" if 1;
-	$cnt++;
 	next if exists $done{$f};
 	$done{$f}=undef;
 	open(F,"$sudo checksec.sh --file \"$f\"|") or die $!;
