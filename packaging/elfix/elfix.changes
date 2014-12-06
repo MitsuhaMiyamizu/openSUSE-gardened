@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Sat Dec 6 00:00:00 CET 2014 - dsterba@suse.cz
+
+- update to git 40ebb28e7c84
+  * scripts/paxmark.sh: backport improvements from pax-utils.eclass
+  * configure.ac: remove bash-isms
+    See: https://bugs.gentoo.org/525240
+
+-------------------------------------------------------------------
 Tue Oct 14 00:00:00 CEST 2014 - ds@suse.cz
 
 - update to git 5fe63d5f5fd4

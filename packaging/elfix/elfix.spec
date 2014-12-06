@@ -18,7 +18,7 @@
 Name:           elfix
 Version:	0.9
 Release:	0
-%define         git_version 5fe63d5f5fd4
+%define         git_version 40ebb28e7c84
 License:	GPL-2.0
 Summary:	Utilities to modify Elf binaries to work with PaX hardened kernel
 Url:		http://www.gentoo.org

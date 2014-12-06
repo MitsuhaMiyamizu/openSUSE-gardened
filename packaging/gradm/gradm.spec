@@ -24,7 +24,7 @@ Summary:        Grsecurity administration tools
 License:        GPL-2.0
 Group:          System/Base
 Url:            http://grsecurity.net
-Source:         gradm-%{version}-%{upstream_release}.tar.gz
+Source:         https://grsecurity.net/stable/gradm-%{version}-%{upstream_release}.tar.gz
 Patch1:         make-grsec_pam-with-pie.diff
 BuildRequires:  bison
 BuildRequires:  flex
@@ -54,6 +54,14 @@ mkdir -p %{buildroot}%{_sysconfdir}/udev/rules.d
 # devnodes are not allowed here
 %make_install MKNOD=/bin/true
 
+# lint: W: suse-filelist-forbidden-udev-userdirs
+# /etc/udev/rules.d/80-grsec.rules is not allowed in SUSE
+# use /usr/lib/udev/rules.d
+install -d -m755 %{buildroot}/usr/lib/udev/rules.d/
+mv %{buildroot}%{_sysconfdir}/udev/rules.d/80-grsec.rules %{buildroot}/usr/lib/udev/rules.d/80-grsec.rules
+rmdir %{buildroot}%{_sysconfdir}/udev/rules.d/
+rmdir %{buildroot}%{_sysconfdir}/udev/
+
 %post
 %set_permissions /sbin/gradm_pam
 
@@ -70,9 +78,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/udev/rules.d
 %config %{_sysconfdir}/grsec/learn_config
 %config %{_sysconfdir}/grsec/policy
 %{_mandir}/man8/gradm.8*
-%dir %{_sysconfdir}/udev/
-%dir %{_sysconfdir}/udev/rules.d/
-%config %{_sysconfdir}/udev/rules.d/80-grsec.rules
+%dir /usr/lib/udev/
+%dir /usr/lib/udev/rules.d/
+/usr/lib/udev/rules.d/80-grsec.rules
 %dev(c,1,3,/dev/grsec)
 
 %changelog
