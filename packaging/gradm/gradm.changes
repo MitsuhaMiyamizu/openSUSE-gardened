@@ -1,5 +1,10 @@
 -------------------------------------------------------------------
-Sun Dec 7 00:00:00 CET 2014 - dsterba@suse.cz
+Tue Feb 24 00:00:00 CET 2015 - dsterba@suse.cz
+
+- update to 3.1-201502222102
+
+-------------------------------------------------------------------
+Sun Dec  7 00:00:00 CET 2014 - dsterba@suse.cz
 
 - install udev rules to /usr/lib
 

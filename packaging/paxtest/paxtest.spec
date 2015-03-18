@@ -15,19 +15,24 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
+
 Name:           paxtest
-Version:	0.9.11
-Release:	0
-License:	GPLv2
-Summary:	Test suite for the PaX kernel patch
-Url:		http://pax.grsecurity.net
-Group:		System/Administration
-Source:		%{name}-%{version}.tar.bz2
-# from http://www.trapkit.de/tools/checksec.html
-Source2:        checksec.sh
+Version:        0.9.13
+Release:        0
+Summary:        Test suite for the PaX kernel patch
+License:        GPL-2.0
+Group:          System/Administration
+Url:            http://pax.grsecurity.net
+Source:         %{name}-%{version}.tar.bz2
+# Original from http://www.trapkit.de/tools/checksec.html
+# now using git://github.com/slimm609/checksec.sh
+# Using modified version from github.com/kdave/openSUSE-gardened.git
+Source1:        checksec
+Source2:        paxtest.1
 Patch1:         openSUSE.results.patch
-PreReq:         binutils
-BuildRequires:	make gcc binutils
+BuildRequires:  binutils
+BuildRequires:  gcc
+BuildRequires:  make
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -48,6 +53,7 @@ designed to test what standard Linux OS and PaX security features are being
 used.
 
 Source: http://www.trapkit.de/tools/checksec.html
+Now using git://github.com/slimm609/checksec.sh
 
 %prep
 %setup -q
@@ -57,20 +63,26 @@ Source: http://www.trapkit.de/tools/checksec.html
 make %{?_smp_mflags} BINDIR=%{_bindir} RUNDIR=%{_libdir}/%{name} linux
 
 %install
-install -d -m 755 $RPM_BUILD_ROOT/%{_libdir}/%{name}
+install -d -m 755 %{buildroot}/%{_libdir}/%{name}
 %make_install -f Makefile.psm BINDIR=%{_bindir} RUNDIR=%{_libdir}/%{name}
-install -d -m 755 $RPM_BUILD_ROOT/%{_datadir}/%{name}/
-install -m 644 results/* $RPM_BUILD_ROOT/%{_datadir}/%{name}/
+install -d -m 755 %{buildroot}/%{_datadir}/%{name}/
+install -m 644 results/* %{buildroot}/%{_datadir}/%{name}/
 
-install -d -m 755 $RPM_BUILD_ROOT/%{_bindir}
-install %{S:2} -m 755 $RPM_BUILD_ROOT/%{_bindir}
+install -d -m 755 %{buildroot}/%{_bindir}
+install -m 755 %{SOURCE1} %{buildroot}/%{_bindir}
+
+install -d -m 755 %{buildroot}/%{_mandir}/man1
+install -m 644 %{SOURCE2} %{buildroot}/%{_mandir}/man1
 
 %files
 %defattr(-,root,root)
 %doc ChangeLog README COPYING
 %{_bindir}/paxtest
-%{_bindir}/checksec.sh
+%{_bindir}/checksec
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/*
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*
+%{_mandir}/man1/paxtest.1*
+
+%changelog

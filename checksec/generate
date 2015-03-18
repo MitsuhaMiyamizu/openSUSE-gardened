@@ -5,9 +5,10 @@ function doit() {
 	./checksec2html $(find $1 -mindepth 1 -maxdepth 1 -type f | sort) > checksec-${2}.html
 }
 
+./checksec2html $(./getpslist) > checksec-pslist.html
+
 doit /bin bin
 doit /sbin sbin
 doit /usr/bin usr-bin
 doit /usr/sbin usr-sbin
 
-./checksec2html $(./getpslist) > checksec-pslist.html

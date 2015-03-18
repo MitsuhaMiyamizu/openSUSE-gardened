@@ -117,7 +117,7 @@ for my $f (@ARGV) {
 	print STDERR "Target ($cnt/$all): $f\n" if 1;
 	next if exists $done{$f};
 	$done{$f}=undef;
-	open(F,"$sudo checksec.sh --file \"$f\"|") or die $!;
+	open(F,"$sudo ./checksec --file \"$f\"|") or die $!;
 
 	my $relro=0;
 	my $canary=0;

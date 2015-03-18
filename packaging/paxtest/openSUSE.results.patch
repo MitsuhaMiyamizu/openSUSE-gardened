@@ -7,7 +7,7 @@ Index: paxtest-0.9.11/results/openSUSE.kiddie
 +Released under the GNU Public Licence version 2 or later
 +
 +Mode: kiddie
-+Linux local.site 3.13.5-3-grsec_desktop #1 SMP PREEMPT Wed Mar 5 01:12:16 UTC 2014 (065ba6d) x86_64 x86_64 x86_64 GNU/Linux
++Linux local.site 3.17.3-1-grsec-desktop #1 SMP PREEMPT Tue Nov 18 13:17:04 UTC 2014 (69eaa2c) x86_64 x86_64 x86_64 GNU/Linux
 +
 +Executable anonymous mapping             : Killed
 +Executable bss                           : Killed
@@ -49,7 +49,7 @@ Index: paxtest-0.9.11/results/openSUSE.blackhat
 +Released under the GNU Public Licence version 2 or later
 +
 +Mode: blackhat
-+Linux local.site 3.13.5-3-grsec_desktop #1 SMP PREEMPT Wed Mar 5 01:12:16 UTC 2014 (065ba6d) x86_64 x86_64 x86_64 GNU/Linux
++Linux local.site 3.17.3-1-grsec-desktop #1 SMP PREEMPT Tue Nov 18 13:17:04 UTC 2014 (69eaa2c) x86_64 x86_64 x86_64 GNU/Linux
 +
 +Executable anonymous mapping             : Killed
 +Executable bss                           : Killed
@@ -67,7 +67,7 @@ Index: paxtest-0.9.11/results/openSUSE.blackhat
 +Executable shared library data (mprotect): Killed
 +Writable text segments                   : Killed
 +Anonymous mapping randomisation test     : 29 bits (guessed)
-+Heap randomisation test (ET_EXEC)        : 22 bits (guessed)
++Heap randomisation test (ET_EXEC)        : 23 bits (guessed)
 +Heap randomisation test (PIE)            : 35 bits (guessed)
 +Main executable randomisation (ET_EXEC)  : 29 bits (guessed)
 +Main executable randomisation (PIE)      : 29 bits (guessed)

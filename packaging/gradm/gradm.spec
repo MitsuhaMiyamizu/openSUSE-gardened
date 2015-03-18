@@ -16,9 +16,9 @@
 #
 
 
-%define upstream_release	201408301734
+%define upstream_release	201502222102
 Name:           gradm
-Version:        3.0
+Version:        3.1
 Release:        0
 Summary:        Grsecurity administration tools
 License:        GPL-2.0

@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Mar 18 00:00:00 CET 2015 - dsterba@suse.cz
+
+- update from git:
+  - wine.conf: wine-staging and pipelight
+  - linux-pax-flags: rename --prepend to --dry-run
+
+-------------------------------------------------------------------
 Tue Oct 14 00:00:00 CEST 2014 - dsterba@suse.cz
 
 - update from git:
