@@ -1,0 +1,11 @@
+-------------------------------------------------------------------
+Mon Feb 16 00:00:00 CET 2015 - dsterba@suse.cz
+
+- Add README.
+- Update checksec to 1.6 and rename.
+
+-------------------------------------------------------------------
+Sun Dec  7 00:00:00 CET 2014 - dsterba@suse.cz
+
+- initial package
+

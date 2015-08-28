@@ -1,0 +1,43 @@
+Build hardening macros for spec files
+=====================================
+
+
+1.
+
+Add to the preamble:
+
+BuildRequires:   hardening-build
+
+
+2.
+
+Edit the section and add following macros, or replace existing if the flags are
+typed manually. See macros.hardening if not sure how they map to the macros.
+
+Check if the package does not enable hardened build on itself, eg. via
+configure options.
+
+%build
+
+CFLAGS:
++ %{?hardening_pie}	- PIE
++ %{?hardening_ssp}	- stack protector
++ %{optflags}		- generic build flags, adds FORTIFY support
+
+LDFLAGS
++ %{?hardening_relro}	- default relro settings (FULL)
++ %{?hardening_pie_ld}	- PIE, the linker part
+
+
+3.
+
+Verify that the build flags are actually applied for selected binaries.
+The paths is relative to the build directory!
+
+(Check section is usually last before %files.)
+
+%check
+%hardening_check_relro ntpd/ntpd
+%hardening_check_pie ntpd/ntpd
+%hardening_check_ssp ntpd/ntpd
+

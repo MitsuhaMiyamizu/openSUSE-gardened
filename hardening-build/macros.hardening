@@ -1,0 +1,22 @@
+%hardening_fortify		-D_FORTIFY_SOURCE=2 -O1
+%hardening_ssp4			-fstack-protector --param ssp-buffer-size=4
+%hardening_ssp_default		-fstack-protector
+%hardening_ssp_strong		-fstack-protector-strong
+%hardening_ssp_all		-fstack-protector-all
+%hardening_relro_partial	-Wl,-z,relro
+%hardening_relro_full		-Wl,-z,relro,-z,now
+
+# defaults, the checks must match the defaults
+%hardening_relro		%{hardening_relro_full}
+%hardening_ssp			%{hardening_ssp4}
+%hardening_pie			-fPIE -pie
+%hardening_pie_ld		-pie
+
+# feature checks
+%hardening_check_checksec	%{_libexecdir}/hardening-build/checksec
+%hardening_check_relro_full()	%hardening_check_checksec --file '%1' | grep -q 'Full RELRO' || false
+%hardening_check_relro_partial()	\
+				%hardening_check_checksec --file '%1' | grep -q 'Partial RELRO' || false
+%hardening_check_relro()	%hardening_check_checksec --file '%1' | grep -q 'Full RELRO' || false
+%hardening_check_pie()		%hardening_check_checksec --file '%1' | grep -q 'PIE enabled' || false
+%hardening_check_ssp()		%hardening_check_checksec --file '%1' | grep -q 'Canary found' || false
